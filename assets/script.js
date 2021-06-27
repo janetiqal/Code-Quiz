@@ -4,11 +4,14 @@ let optionB= document.getElementById("optionB");
 let optionC= document.getElementById("optionC");
 let optionD= document.getElementById("optionD");
 let optionContainer = document.getElementsByClassName("option")
+let instructions =document.getElementById("instructions")
 let startGameButton= document.getElementById("button");
-let timer = document.getElementById("timer")
+let timer = document.getElementById("timer");
 let index =0 ;
-let score = document.getElementById("score")
-score = 0;
+let indextwo=0;
+let score = document.getElementById("score");
+score =0;
+
 
 var questionsAndOptions=[
 { 
@@ -53,17 +56,21 @@ var questionsAndOptions=[
 }]
 
 
-startGameButton.addEventListener("click", startGame) ;
+startGameButton.addEventListener("click", startGame);
 
 function startGame(){
    console.log("letsgo");
    questionPopulate();
+   instructions.style.display="none" ;
+   startGameButton.style.display = "none";
+   for (var i = 0; i < optionContainer.length; i++) 
+   optionContainer[i].setAttribute("style", "border:1px solid black; margin:5px auto; width:50%; padding:5px")
    //timer needs to start 
-   //button needs to go away. 
    
 }
 function questionPopulate() {
-    question.textContent= questionsAndOptions[index].question;
+  
+    question.textContent=questionsAndOptions[index].question;
     optionA.textContent=questionsAndOptions[index].option1;
     optionB.textContent=questionsAndOptions[index].option2;
     optionC.textContent=questionsAndOptions[index].option3;
@@ -74,26 +81,29 @@ function questionPopulate() {
     optionB.addEventListener("click", answerCheck)
     optionC.addEventListener("click", answerCheck)
     optionD.addEventListener("click", answerCheck)
-    // optionA.onclick = answerCheck();
-    // optionB.onclick = answerCheck();
-    // optionC.onclick = answerCheck();
-    // optionD.onclick = answerCheck();
-//how do i record what the user selects?
-//data-state?
-    index++;
+
 };
- function answerCheck(){
-    let userSelected = ;
+ function answerCheck(event){
+    // console.log(event.target.textContent)
+    let userSelected= event.target.textContent;
     let rightAnswer = questionsAndOptions[index].CorrectAnswer;
-    if (rightAnswer){
-    score += 1;
-    console.log("correct")
-    //style button to be green 
+    // console.log(questionsAndOptions[index].CorrectAnswer)
+    console.log(index)
+    console.log(score)
+    if (userSelected === rightAnswer){
+    score+=1;
+    console.log("correct");
+    index++;
+    // rightAnswer.setAttribute("style", "border:1px solid green");
+    //update score
     }
     else { 
         console.log("wrong answer")
+        // userSelected.setAttribute("style", "border:1px solid red")
         //style button to be red.
         //timer deducts 10 seconds
+        //display right answer 
+        index++;
     }
 };
 
