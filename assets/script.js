@@ -3,9 +3,12 @@ let optionA= document.getElementById("optionA");
 let optionB= document.getElementById("optionB");
 let optionC= document.getElementById("optionC");
 let optionD= document.getElementById("optionD");
+let optionContainer = document.getElementsByClassName("option")
 let startGameButton= document.getElementById("button");
 let timer = document.getElementById("timer")
 let index =0 ;
+let score = document.getElementById("score")
+score = 0;
 
 var questionsAndOptions=[
 { 
@@ -33,15 +36,15 @@ var questionsAndOptions=[
 "CorrectAnswer": "function()"
 },
 {
-"question" : "Click me",
-"option1" :"answerA",
-"option2" :"answerB",
-"option3" : "answerC",
-"option4" : "aanswerC",
-"CorrectAnswer": "answerC"
+"question" : "Choose the answer that portrays proper camel casing.",
+"option1" :"HelloIsThisCorrect",
+"option2" :"HelloisthiscorrecT",
+"option3" : "helloISthiscorrect",
+"option4" : "helloIsThisCorrect",
+"CorrectAnswer": "helloIsThisCorrect"
 },
 {
-"question" : "Click me",
+"question" : "hello me",
 "option1" :"answerA",
 "option2" :"answerB",
 "option3" : "answerC",
@@ -55,9 +58,9 @@ startGameButton.addEventListener("click", startGame) ;
 function startGame(){
    console.log("letsgo");
    questionPopulate();
-   
    //timer needs to start 
-   //call the question/optoins function to populate.
+   //button needs to go away. 
+   
 }
 function questionPopulate() {
     question.textContent= questionsAndOptions[index].question;
@@ -66,17 +69,37 @@ function questionPopulate() {
     optionC.textContent=questionsAndOptions[index].option3;
     optionD.textContent=questionsAndOptions[index].option4;
 
+    // optionContainer.addEventListener("click", answerCheck)
     optionA.addEventListener("click", answerCheck)
     optionB.addEventListener("click", answerCheck)
     optionC.addEventListener("click", answerCheck)
     optionD.addEventListener("click", answerCheck)
+    // optionA.onclick = answerCheck();
+    // optionB.onclick = answerCheck();
+    // optionC.onclick = answerCheck();
+    // optionD.onclick = answerCheck();
+//how do i record what the user selects?
+//data-state?
+    index++;
 };
-function answerCheck(event){
-    if 
+ function answerCheck(){
+    let userSelected = ;
+    let rightAnswer = questionsAndOptions[index].CorrectAnswer;
+    if (rightAnswer){
+    score += 1;
+    console.log("correct")
+    //style button to be green 
+    }
+    else { 
+        console.log("wrong answer")
+        //style button to be red.
+        //timer deducts 10 seconds
+    }
 };
-// add event listener for each of those options 
-//create a function to check if the answer selected === questionsAndOptions[index].correctAnwer;
-//incremeent the index and go to the next question 
 
-// "CorrectAnswer": "array.splice()"
+
+
+// add event listener for each of those options 
+//create a function to check if the answer selected === questionsAndOptions[index].CorrectAnswer;
+//increment the index and go to the next question 
 
