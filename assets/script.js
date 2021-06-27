@@ -7,11 +7,10 @@ let optionContainer = document.getElementsByClassName("option")
 let instructions =document.getElementById("instructions")
 let startGameButton= document.getElementById("button");
 let timer = document.getElementById("timer");
-let index =0 ;
-let indextwo=0;
+let index = 0;
 let score = document.getElementById("score");
-score =0;
-
+let scoreCount = 0;
+let timeStart = 10;
 
 var questionsAndOptions=[
 { 
@@ -59,13 +58,13 @@ var questionsAndOptions=[
 startGameButton.addEventListener("click", startGame);
 
 function startGame(){
-   console.log("letsgo");
+   countdown();
    questionPopulate();
    instructions.style.display="none" ;
    startGameButton.style.display = "none";
    for (var i = 0; i < optionContainer.length; i++) 
    optionContainer[i].setAttribute("style", "border:1px solid black; margin:5px auto; width:50%; padding:5px")
-   //timer needs to start 
+   
    
 }
 function questionPopulate() {
@@ -76,7 +75,6 @@ function questionPopulate() {
     optionC.textContent=questionsAndOptions[index].option3;
     optionD.textContent=questionsAndOptions[index].option4;
 
-    // optionContainer.addEventListener("click", answerCheck)
     optionA.addEventListener("click", answerCheck)
     optionB.addEventListener("click", answerCheck)
     optionC.addEventListener("click", answerCheck)
@@ -89,24 +87,38 @@ function questionPopulate() {
     let rightAnswer = questionsAndOptions[index].CorrectAnswer;
     // console.log(questionsAndOptions[index].CorrectAnswer)
     console.log(index)
-    console.log(score)
+    console.log(scoreCount)
     if (userSelected === rightAnswer){
-    score+=1;
+    scoreCount+=1;
     console.log("correct");
     index++;
     // rightAnswer.setAttribute("style", "border:1px solid green");
-    //update score
     }
     else { 
         console.log("wrong answer")
         // userSelected.setAttribute("style", "border:1px solid red")
         //style button to be red.
-        //timer deducts 10 seconds
+        timeStart -= 10;
         //display right answer 
         index++;
     }
 };
 
+function countdown (){
+    let timeInterval = setInterval(function(){
+    timer.textContent= `Time Left: ${timeStart}`;
+    timeStart--;
+    if (timeStart < 0){
+        clearInterval(timeInterval)
+        timer.textContent="";
+        console.log(scoreCount);
+        score.textContent= `Your Score is ${scoreCount}`;
+
+    //    optionContainer.style.display = "none";
+
+    }
+    },1000);
+}
 
 
 // add event listener for each of those options 
