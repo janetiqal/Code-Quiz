@@ -1,17 +1,19 @@
-let question= document.getElementById("question");
-let optionA= document.getElementById("optionA");
-let optionB= document.getElementById("optionB");
-let optionC= document.getElementById("optionC");
-let optionD= document.getElementById("optionD");
-let optionContainer = document.getElementsByClassName("option")
-let instructions =document.getElementById("instructions")
-let startGameButton= document.getElementById("button");
-let timer = document.getElementById("timer");
+const question= document.getElementById("question");
+const optionA= document.getElementById("optionA");
+const optionB= document.getElementById("optionB");
+const optionC= document.getElementById("optionC");
+const optionD= document.getElementById("optionD");
+const optionContainer = document.getElementsByClassName("option")
+const instructions =document.getElementById("instructions")
+const startGameButton= document.getElementById("button");
+const timer = document.getElementById("timer");
 let index = 0;
-let score = document.getElementById("score");
+const score = document.getElementById("score");
 let scoreCount = 0;
-let timeStart = 10;
+let timeStart = 75;
+const inputField =document.getElementById("formField");
 
+//var array with questions and answers. can add any amount of questions you'd like. change time depending on additions
 var questionsAndOptions=[
 { 
 "question" : "Which array method mutates the existing array? " ,
@@ -56,16 +58,17 @@ var questionsAndOptions=[
 
 
 startGameButton.addEventListener("click", startGame);
+inputField.setAttribute("style", "border:2px solid black; margin:5px auto; width:50%; padding:5px;display:flex; flex-direction:column")
 
 function startGame(){
    countdown();
    questionPopulate();
    instructions.style.display="none" ;
    startGameButton.style.display = "none";
+   inputField.style.display="none";
    for (var i = 0; i < optionContainer.length; i++) 
    optionContainer[i].setAttribute("style", "border:1px solid black; margin:5px auto; width:50%; padding:5px")
-   
-   
+     
 }
 function questionPopulate() {
   
@@ -86,12 +89,12 @@ function questionPopulate() {
     let userSelected= event.target.textContent;
     let rightAnswer = questionsAndOptions[index].CorrectAnswer;
     // console.log(questionsAndOptions[index].CorrectAnswer)
-    console.log(index)
-    console.log(scoreCount)
+    console.log(`index value ${index}`)
     if (userSelected === rightAnswer){
-    scoreCount+=1;
-    console.log("correct");
-    index++;
+        scoreCount+=1;
+        console.log("correct");
+        index++;
+        console.log(`the score value ${scoreCount}`)
     // rightAnswer.setAttribute("style", "border:1px solid green");
     }
     else { 
@@ -108,20 +111,46 @@ function countdown (){
     let timeInterval = setInterval(function(){
     timer.textContent= `Time Left: ${timeStart}`;
     timeStart--;
-    if (timeStart < 0){
-        clearInterval(timeInterval)
+    if (timeStart < 0 || index === questionsAndOptions.length){
+        clearInterval(timeInterval);
         timer.textContent="";
         console.log(scoreCount);
         score.textContent= `Your Score is ${scoreCount}`;
-
     //    optionContainer.style.display = "none";
-
+    //input form needs to pop up here and only here
     }
     },1000);
 }
+// need to do the local storage.
+const submitUserForm=document.getElementById("submit");
+submitUserForm.addEventListener("click", renderForm());
 
 
-// add event listener for each of those options 
-//create a function to check if the answer selected === questionsAndOptions[index].CorrectAnswer;
-//increment the index and go to the next question 
+function displayFormInput(type, message){
+    var inputValues =document.getElementById("renderedmessage")
+    inputValues.textContent= message;
+    inputValues.setAttribute= ("type", type)
+};
+
+function renderForm(event){
+    event.preventDefault();
+    var initalsInput = document.getElementById("initials").value;
+    var highScoreInput= document.getElementById("HighScore").value;
+    if (initalsInput ===""){
+    displayFormInput("error", "Initals can not be black")
+    }
+    else if((highScoreInput ==="")) {
+        displayFormInput("error", "Initals can not be black")
+    }
+    else{
+        displayFormInput(`${initalsInput} and ${highScoreInput} have been saved.`);
+        
+        localStorage.setItem("Initials",initalsInput )
+        localStorage.setItem("High Score",highScoreInput)
+    //create function to call back previous users high scores and initials
+    }
+};
+
+
+//increment the index and go to the next question, content on page isnt switching questions
 

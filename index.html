@@ -12,7 +12,7 @@
   <h1>Code Quiz Challenge</h1>
   <h3 id= "timer"></h3>
   <h3 id="score"></h3>
-  <main id="flex"> 
+  <main> 
    <h2><div id="question">Are you ready to start your Code Quiz Challenge?</div></h2>
    <p id="instructions">You have 75 seconds to answer 5 questions. Answer incorrectly, lose 10 seconds of time! Choose correctly, you get one point added to your score. Good luck.</p>
        <div id="allOptions">
@@ -21,9 +21,19 @@
             <div class = "option" id="optionC"></div>
             <div class = "option" id="optionD"></div>
        </div>
-  <button id ="button" >Start Game</button>
+  <button id ="button">Start Game</button>
+  <form id="formField">
+    <label>Initials: </label>
+    <input class= "inputArea" id="intials" placeholder="Type your initals here" type="text"/>
+    <label>HighScore: </label>
+    <input class= "inputArea" id="HighScore" type="text" placeholder="Type your score here"/>
+    <br>
+    <div id="renderedmessage">   
+   <button id="submit">Save Info</button>
+     </div>
+  </form>
   </main>
-    <div id="answerResult"></div>
+
 
     <script src= "assets/script.js"></script>
 </body>
