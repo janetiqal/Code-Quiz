@@ -122,34 +122,45 @@ function countdown (){
     },1000);
 }
 // need to do the local storage.
-const submitUserForm=document.getElementById("submit");
-submitUserForm.addEventListener("click", renderForm());
 
-
-function displayFormInput(type, message){
+function displayFormInput(message){
     var inputValues =document.getElementById("renderedmessage")
-    inputValues.textContent= message;
-    inputValues.setAttribute= ("type", type)
+    inputValues.textContent=message;
+    // inputValues.setAttribute= ("class", type); //NOT SURE WHAT THIS MEANS PREVI. EXAMPLE HAD (TYPE, MESAGE)
 };
 
-function renderForm(event){
+function populateStorage(){  
+    var userInitials = document.getElementById("user-initials")
+    var userInitialsStorage =localStorage.getItem("initialLabel");
+    userInitials.textContent= userInitialsStorage;
+    
+    var userScore = document.getElementById("user-score") 
+    var scoreStorage = localStorage.getItem("scoreLabel");
+    userScore.textContent=scoreStorage;
+};
+
+const submitUserForm=document.getElementById("submit");  
+submitUserForm.addEventListener("click", function renderForm(event){
     event.preventDefault();
-    var initalsInput = document.getElementById("initials").value;
-    var highScoreInput= document.getElementById("HighScore").value;
-    if (initalsInput ===""){
-    displayFormInput("error", "Initals can not be black")
+    var initialsInput = document.getElementById("initials").value;
+    var highScoreInput =document.getElementById("HighScore").value;
+
+   if (initialsInput === ""){
+    displayFormInput("Initals can not be blank")
     }
     else if((highScoreInput ==="")) {
-        displayFormInput("error", "Initals can not be black")
+        displayFormInput("High Score can not be blank")
     }
     else{
-        displayFormInput(`${initalsInput} and ${highScoreInput} have been saved.`);
+        displayFormInput(`Initals ${initialsInput} and score of ${highScoreInput} have been saved.`);
         
-        localStorage.setItem("Initials",initalsInput )
-        localStorage.setItem("High Score",highScoreInput)
+        localStorage.setItem("Initials",initialsInput )
+        localStorage.setItem("HighScore",highScoreInput)
     //create function to call back previous users high scores and initials
+    populateStorage();
     }
-};
+
+});
 
 
 //increment the index and go to the next question, content on page isnt switching questions

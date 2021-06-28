@@ -23,13 +23,15 @@
        </div>
   <button id ="button">Start Game</button>
   <form id="formField">
-    <label>Initials: </label>
-    <input class= "inputArea" id="intials" placeholder="Type your initals here" type="text"/>
-    <label>HighScore: </label>
+    <label id ="initialLabel">Initials: </label>
+    <input class= "inputArea" id="initials" placeholder="Type your initals here" type="text"/>
+    <label id ="scoreLabel">HighScore: </label>
     <input class= "inputArea" id="HighScore" type="text" placeholder="Type your score here"/>
     <br>
     <div id="renderedmessage">   
-   <button id="submit">Save Info</button>
+      <button id="submit">Save Info</button>
+      <p> <span id= "user-initials"></span></p>
+      <p> <span id= "user-score"></span></p>
      </div>
   </form>
   </main>
