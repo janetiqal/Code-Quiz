@@ -7,10 +7,10 @@ const optionContainer = document.getElementsByClassName("option")
 const instructions =document.getElementById("instructions")
 const startGameButton= document.getElementById("button");
 const timer = document.getElementById("timer");
-let index = 0;
 const score = document.getElementById("score");
 let scoreCount = 0;
 let timeStart = 75;
+let index = 0;
 const inputField =document.getElementById("formField");
 
 //var array with questions and answers. can add any amount of questions you'd like. change time depending on additions
@@ -58,17 +58,18 @@ var questionsAndOptions=[
 
 
 startGameButton.addEventListener("click", startGame);
-inputField.setAttribute("style", "border:2px solid black; margin:5px auto; width:50%; padding:5px;display:flex; flex-direction:column")
+//hiding the highscore/intial input form until the game ends
+inputField.style.display= "none";
 
 function startGame(){
    countdown();
    questionPopulate();
    instructions.style.display="none" ;
    startGameButton.style.display = "none";
-   inputField.style.display="none";
+   inputField.style.display= "none";
    for (var i = 0; i < optionContainer.length; i++) 
    optionContainer[i].setAttribute("style", "border:1px solid black; margin:5px auto; width:50%; padding:5px")
-     
+
 }
 function questionPopulate() {
   
@@ -84,17 +85,20 @@ function questionPopulate() {
     optionD.addEventListener("click", answerCheck)
 
 };
+
  function answerCheck(event){
     // console.log(event.target.textContent)
     let userSelected= event.target.textContent;
     let rightAnswer = questionsAndOptions[index].CorrectAnswer;
-    // console.log(questionsAndOptions[index].CorrectAnswer)
+    console.log(rightAnswer)
     console.log(`index value ${index}`)
+    var displayAnswer = document.getElementsByClassName("displayAnswer");
     if (userSelected === rightAnswer){
         scoreCount+=1;
         console.log("correct");
         index++;
         console.log(`the score value ${scoreCount}`)
+        displayAnswer.textContent= ("Correct!")
     // rightAnswer.setAttribute("style", "border:1px solid green");
     }
     else { 
@@ -104,6 +108,7 @@ function questionPopulate() {
         timeStart -= 10;
         //display right answer 
         index++;
+        displayAnswer.textContent= (`Wrong! Correct answer is ${rightAnswer}`);
     }
 };
 
@@ -116,8 +121,9 @@ function countdown (){
         timer.textContent="";
         console.log(scoreCount);
         score.textContent= `Your Score is ${scoreCount}`;
-    //    optionContainer.style.display = "none";
-    //input form needs to pop up here and only here
+        inputField.setAttribute("style", "border:2px solid black; margin:5px auto; width:50%; padding:5px;display:flex; flex-direction:column")
+        //clear the questions
+    
     }
     },1000);
 }
