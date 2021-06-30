@@ -1,43 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Janet Iqal's Code Quiz</title>
-    <link href= "assets/style.css" rel="stylesheet" ></link>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Janet Iqal's Code Quiz</title>
+  <link href="assets/style.css" rel="stylesheet">
+  </link>
 </head>
+
 <body>
-    
+
   <h1>Code Quiz Challenge</h1>
-  <h3 id= "timer"></h3>
+  <h3 id="timer"></h3>
   <h3 id="score"></h3>
-  <main> 
-   <h2><div id="question">Are you ready to start your Code Quiz Challenge?</div></h2>
-   <p id="instructions">You have 75 seconds to answer 5 questions. Answer incorrectly, lose 10 seconds of time! Choose correctly, you get one point added to your score. Good luck.</p>
-       <div id="allOptions">
-            <div class = "option" id="optionA"></div>
-            <div class = "option" id="optionB"></div>
-            <div class = "option" id="optionC"></div>
-            <div class = "option" id="optionD"></div>
-            <div id= "displayAnswer"></div>
-       </div>
-  <button id ="button">Start Game</button>
-  <form id="formField">
-    <label id ="initialLabel">Initials: </label>
-    <input class= "inputArea" id="initials" placeholder="Type your initals here" type="text"/>
-    <label id ="scoreLabel">HighScore: </label>
-    <input class= "inputArea" id="HighScore" type="text" placeholder="Type your score here"/>
-    <br>
-    <div id="renderedmessage">   
-      <button id="submit">Save Info</button>
-      <p> <span id= "user-initials"></span></p>
-      <p> <span id= "user-score"></span></p>
-     </div>
-  </form>
+  <main>
+    <div id="allOptions">
+      <h2>
+        <div id="question" id="questionDiv">Are you ready to start your Code Quiz Challenge?</div>
+      </h2>
+      <p id="instructions">You have 75 seconds to answer 5 questions. Answer incorrectly, lose 10 seconds of time!
+        Choose correctly, you get one point added to your score. Good luck.</p>
+      <div class="option" id="optionA"></div>
+      <div class="option" id="optionB"></div>
+      <div class="option" id="optionC"></div>
+      <div class="option" id="optionD"></div>
+      <div id="displayAnswer"></div>
+    </div>
+    <button id="button">Start Game</button>
+    <form id="formField">
+      <label id="initialLabel">Initials: </label>
+      <input class="inputArea" id="initials" placeholder="Type your initals here" type="text" />
+      <label id="scoreLabel">HighScore: </label>
+      <input class="inputArea" id="HighScore" type="text" placeholder="Type your score here" />
+      <br>
+      <div id="renderedmessage">
+        <button id="submit">Save Info</button>
+        <p> <span id="user-initials"></span></p>
+        <p> <span id="user-score"></span></p>
+      </div>
+    </form>
   </main>
 
 
-    <script src= "assets/script.js"></script>
+  <script src="assets/script.js"></script>
 </body>
+
 </html>

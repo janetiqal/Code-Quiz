@@ -13,7 +13,7 @@ let scoreCount = 0;
 let timeStart = 75;
 let index = 0;
 const inputField = document.getElementById("formField");
-const clearInputValue = document.getElementById("clearbtn")
+const clearInputValue = document.getElementById("clearbtn");
 
 //var array with questions and answers. can add any amount of questions you'd like. change time depending on additions
 var questionsAndOptions = [
@@ -69,10 +69,11 @@ function startGame() {
     instructions.style.display = "none";
     startGameButton.style.display = "none";
     inputField.style.display = "none";
-    for (var i = 0; i < optionContainer.length; i++)
-        optionContainer[i].setAttribute("style", "border:1px solid black; margin:5px auto; width:50%; padding:5px")
+    for (let i = 0; i < optionContainer.length; i++)
+        optionContainer[i].setAttribute("style", "border:1px solid black; margin:5px auto; width:50%; padding:5px; font-size:32px;")
 }
-
+//this populates each question and its options at their div in the html
+//questions are being indexed and the text of each questions is being assigned to their corresponding key values in the array
 function questionPopulate() {
 
     question.textContent = questionsAndOptions[index].question;
@@ -80,46 +81,43 @@ function questionPopulate() {
     optionB.textContent = questionsAndOptions[index].option2;
     optionC.textContent = questionsAndOptions[index].option3;
     optionD.textContent = questionsAndOptions[index].option4;
-
+//each option div has an event listener.
     optionA.addEventListener("click", answerCheck)
     optionB.addEventListener("click", answerCheck)
     optionC.addEventListener("click", answerCheck)
     optionD.addEventListener("click", answerCheck)
-
 };
 
 function answerCheck(event) {
-    // console.log(event.target.textContent)
-    let userSelected = event.target.textContent;
-    // let userPick = event.target;
+    //this is how I compare what the user selected to determine if they chose the right or wrong anser
+    var userSelected = event.target.textContent;
+    console.log(event.target.textContent)
+
     let rightAnswer = questionsAndOptions[index].CorrectAnswer;
     console.log(rightAnswer)
     console.log(`index value ${index}`)
+    //this allows for user to see if they chose the correct or wrong answer.
     var displayAnswer = document.getElementById("displayAnswer");
     if (userSelected === rightAnswer) {
         scoreCount += 1;
         console.log("correct");
         index++;
+        //needed this nested if statement because the questionPopulate function throws an error in the console because it trys to populate even after there are no more questions. 
         if(index <questionsAndOptions.length){
             questionPopulate();
+            displayAnswer.textContent = ("Correct!");
         }
         console.log(`the score value ${scoreCount}`)
-        displayAnswer.textContent = ("Correct!")
-        // rightAnswer.setAttribute("class", "demo");
     } 
     else {
         console.log("wrong answer")
-        // userSelected.setAttribute("style", "border:1px solid red")
-        //style button to be red.
         timeStart -= 10;
-        //display right answer 
-        questionPopulate();
         index++;
         displayAnswer.textContent = (`Wrong! Correct answer is ${rightAnswer}`);
+        questionPopulate();
     }
-
 };
-
+//this function controls the 
 function countdown() {
     let timeInterval = setInterval(function () {
         timer.textContent = `Time Left: ${timeStart}`;
@@ -130,19 +128,18 @@ function countdown() {
             console.log(scoreCount);
             score.textContent = `Your Score is ${scoreCount}`;
             inputField.setAttribute("style", "border:2px solid black; margin:5px auto; width:50%; padding:5px;display:flex; flex-direction:column")
-            //clear the questions
             parentDiv.style.display="none";
         }
     }, 1000);
 }
-// need to do the local storage.
 
+//This function shows the user their saved initials and score after inputting.
 function displayFormInput(message) {
     var inputValues = document.getElementById("renderedmessage")
     inputValues.textContent = message;
-    // inputValues.setAttribute= ("class", type); //NOT SURE WHAT THIS MEANS PREVI. EXAMPLE HAD (TYPE, MESAGE)
 };
-
+//setting up the input values from the form and saving them to local storage so they can be set
+//input for user intitals and user score are saved. 
 function populateStorage() {
     var userInitials = document.getElementById("user-initials")
     var userInitialsStorage = localStorage.getItem("initialLabel");
@@ -152,7 +149,7 @@ function populateStorage() {
     var scoreStorage = localStorage.getItem("scoreLabel");
     userScore.textContent = scoreStorage;
 };
-
+// upon submitting the form, user can check and see if their score has been saved to local storage. message will appear to let them know their info has been saved when properly filling out the form. 
 const submitUserForm = document.getElementById("submit");
 submitUserForm.addEventListener("click", function renderForm(event) {
     event.preventDefault();
@@ -160,22 +157,19 @@ submitUserForm.addEventListener("click", function renderForm(event) {
     var highScoreInput = document.getElementById("HighScore").value;
 
     if (initialsInput === "") {
-        displayFormInput("Initals can not be blank")
+        alert("Initals can not be blank")
     }
     else if ((highScoreInput === "")) {
-        displayFormInput("High Score can not be blank")
+        alert("High Score can not be blank")
     }
     else {
         displayFormInput(`Initals ${initialsInput} and score of ${highScoreInput} have been saved.`);
         localStorage.setItem("Initials", initialsInput)
         localStorage.setItem("HighScore", highScoreInput)
-        //create function to call back previous users high scores and initials
-        populateStorage();
     }
 });
 // clearInputValue.addEventListener("click", function(){
 //     initialsInput.innerHTML
 // })
 
-//increment the index and go to the next question, content on page isnt switching questions
 
