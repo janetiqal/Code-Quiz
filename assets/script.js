@@ -138,24 +138,15 @@ function displayFormInput(message) {
     var inputValues = document.getElementById("renderedmessage")
     inputValues.textContent = message;
 };
-//setting up the input values from the form and saving them to local storage so they can be set
+//setting up the input values from the form and saving them to local storage 
 //input for user intitals and user score are saved. 
-function populateStorage() {
-    var userInitials = document.getElementById("user-initials")
-    var userInitialsStorage = localStorage.getItem("initialLabel");
-    userInitials.textContent = userInitialsStorage;
-
-    var userScore = document.getElementById("user-score")
-    var scoreStorage = localStorage.getItem("scoreLabel");
-    userScore.textContent = scoreStorage;
-};
 // upon submitting the form, user can check and see if their score has been saved to local storage. message will appear to let them know their info has been saved when properly filling out the form. 
 const submitUserForm = document.getElementById("submit");
 submitUserForm.addEventListener("click", function renderForm(event) {
     event.preventDefault();
     var initialsInput = document.getElementById("initials").value;
     var highScoreInput = document.getElementById("HighScore").value;
-
+    
     if (initialsInput === "") {
         alert("Initals can not be blank")
     }
@@ -166,10 +157,17 @@ submitUserForm.addEventListener("click", function renderForm(event) {
         displayFormInput(`Initals ${initialsInput} and score of ${highScoreInput} have been saved.`);
         localStorage.setItem("Initials", initialsInput)
         localStorage.setItem("HighScore", highScoreInput)
+        populateStorage();
     }
 });
-// clearInputValue.addEventListener("click", function(){
-//     initialsInput.innerHTML
-// })
-
+//getting items from local storage
+    function populateStorage() {
+        var userInitials = document.getElementById("user-initials")
+        var userInitialsStorage = localStorage.getItem("initialLabel");
+        userInitials.textContent = userInitialsStorage;
+    
+        var userScore = document.getElementById("user-score")
+        var scoreStorage = localStorage.getItem("scoreLabel");
+        userScore.textContent = scoreStorage;
+    };
 
