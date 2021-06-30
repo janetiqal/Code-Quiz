@@ -161,13 +161,12 @@ submitUserForm.addEventListener("click", function renderForm(event) {
     }
 });
 //getting items from local storage
-    function populateStorage() {
-        var userInitials = document.getElementById("user-initials")
-        var userInitialsStorage = localStorage.getItem("initialLabel");
-        userInitials.textContent = userInitialsStorage;
-    
-        var userScore = document.getElementById("user-score")
-        var scoreStorage = localStorage.getItem("scoreLabel");
-        userScore.textContent = scoreStorage;
-    };
+function populateStorage() {
+    var userInitials = document.getElementById("user-initials")
+    var userInitialsStorage = localStorage.getItem("initialLabel");
+    userInitials.textContent = userInitialsStorage;
 
+    var userScore = document.getElementById("user-score")
+    var scoreStorage = localStorage.getItem("scoreLabel");
+    userScore.textContent = scoreStorage;
+};
