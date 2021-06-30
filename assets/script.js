@@ -70,7 +70,7 @@ function startGame() {
     startGameButton.style.display = "none";
     inputField.style.display = "none";
     for (let i = 0; i < optionContainer.length; i++)
-        optionContainer[i].setAttribute("style", "border:1px solid black; margin:5px auto; width:50%; padding:5px; font-size:32px;")
+        optionContainer[i].setAttribute("style", "border:1px solid black; border-radius:8px; margin:5px auto; width:50%; padding:5px; font-size:32px;")
 }
 //this populates each question and its options at their div in the html
 //questions are being indexed and the text of each questions is being assigned to their corresponding key values in the array
