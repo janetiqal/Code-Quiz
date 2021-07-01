@@ -53,7 +53,7 @@ var questionsAndOptions = [
         "question": "Where do you add your Javascript link?",
         "option1": "Just after the opening body tag in the html.",
         "option2": "Between the head tag.",
-        "option3": "At the bottom of the page just before the losing body tag",
+        "option3": "At the bottom of the page just before the closing body tag",
         "option4": "Between the closing body tag and the closing html tag.",
         "CorrectAnswer": "answerC"
     }]
