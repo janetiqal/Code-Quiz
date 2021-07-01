@@ -55,7 +55,7 @@ var questionsAndOptions = [
         "option2": "Between the head tag.",
         "option3": "At the bottom of the page just before the closing body tag",
         "option4": "Between the closing body tag and the closing html tag.",
-        "CorrectAnswer": "answerC"
+        "CorrectAnswer": "At the bottom of the page just before the closing body tag"
     }]
 
 
