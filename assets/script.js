@@ -147,7 +147,7 @@ submitUserForm.addEventListener("click", function renderForm(event) {
     event.preventDefault();   
     var initialsInput = document.getElementById("initials").value;
     var highScoreInput = document.getElementById("HighScore").value;
-    
+    let reload =setTimeout(function(){location.reload()},1500)
     if (initialsInput === "") {
         alert("Initals can not be blank")
     }
@@ -159,7 +159,7 @@ submitUserForm.addEventListener("click", function renderForm(event) {
         localStorage.setItem("Initials", initialsInput)
         localStorage.setItem("HighScore", highScoreInput)
         populateStorage();
-    }
+    } 
 });
 //getting items from local storage
 function populateStorage() {
