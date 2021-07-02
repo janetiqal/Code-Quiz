@@ -104,8 +104,9 @@ function answerCheck(event) {
         index++;
         //needed this nested if statement because the questionPopulate function throws an error in the console because it trys to populate even after there are no more questions. 
         if(index <questionsAndOptions.length){
-            questionPopulate();
+            // questionPopulate();
             displayAnswer.textContent = ("Correct!");
+            let wait =setTimeout(function(){questionPopulate()},1000)
         }
         console.log(`the score value ${scoreCount}`)
     } 
@@ -114,7 +115,7 @@ function answerCheck(event) {
         timeStart -= 10;
         index++;
         displayAnswer.textContent = (`Wrong! Correct answer is ${rightAnswer}`);
-        questionPopulate();
+        let wait =setTimeout(function(){questionPopulate()},2000)
     }
 };
 //this function controls the 
