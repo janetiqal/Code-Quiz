@@ -106,7 +106,7 @@ function answerCheck(event) {
         if(index <questionsAndOptions.length){
             // questionPopulate();
             displayAnswer.textContent = ("Correct!");
-            let wait =setTimeout(function(){questionPopulate()},1000)
+            let wait =setTimeout(function(){questionPopulate()},500)
         }
         console.log(`the score value ${scoreCount}`)
     } 
@@ -115,7 +115,7 @@ function answerCheck(event) {
         timeStart -= 10;
         index++;
         displayAnswer.textContent = (`Wrong! Correct answer is ${rightAnswer}`);
-        let wait =setTimeout(function(){questionPopulate()},2000)
+        let wait =setTimeout(function(){questionPopulate()},1500)
     }
 };
 //this function controls the 
