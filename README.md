@@ -1,6 +1,6 @@
-# Homework-04
+# Code Quiz
 # Name of Assignment 
-Code Quiz 
+Code Quiz Homework-4
 # Purpose
 The purpose of this assignment is to build a coding quiz with questions with multiple answer options for users to test their coding knowledge. This assignment requires knowledge of HTML, CSS, Javascript and Web API's to build a functional, responsive quiz. After a question has been answered the next question should display on the screen. If the user gets a question wrong, time is deducted. If a question is answered correctly a point is added to the users score. When the time runs out or if the user answers all the questions--the user is able to save his/her initials and highscore. 
 # My Experience
